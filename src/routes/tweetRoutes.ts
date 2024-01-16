@@ -22,14 +22,17 @@ router.post('/', async (req, res) => {
 });
 
 router.get('/', async (req, res) => {
-  const allTweets = await prisma.tweet.findMany();
+  const allTweets = await prisma.tweet.findMany({ include: { user: true } });
 
   res.json(allTweets);
 });
 
 router.get('/:id', async (req, res) => {
   const { id } = req.params;
-  const result = await prisma.tweet.findUnique({ where: { id: Number(id) } });
+  const result = await prisma.tweet.findUnique({
+    where: { id: Number(id) },
+    include: { user: true },
+  });
 
   res.json(result);
 });
