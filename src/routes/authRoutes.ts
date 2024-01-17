@@ -44,7 +44,8 @@ router.post('/login', async (req, res) => {
       },
     });
 
-    // send Email token to user email
+    // TODO: send Email token to user email
+
     res.sendStatus(200);
   } catch (error) {
     res
